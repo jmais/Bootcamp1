@@ -1,0 +1,41 @@
+[1mdiff --git a/server.js b/server.js[m
+[1mindex 243c7a5..cdabf42 100644[m
+[1m--- a/server.js[m
+[1m+++ b/server.js[m
+[36m@@ -8,6 +8,20 @@[m [mvar listingData, server;[m
+ [m
+ var requestHandler = function(request, response) {[m
+   var parsedUrl = url.parse(request.url);[m
+[32m+[m[32m  if(parsedUrl.pathname =="/listings"){[m
+[32m+[m[41m	  [m
+[32m+[m	[32m  response.writeHead(200, {"Content-Type": "application/json"});[m
+[32m+[m	[32m  response.write(listingData);[m
+[32m+[m	[32m  response.end();[m
+[32m+[m[41m	  [m
+[32m+[m[41m	  [m
+[32m+[m[41m	  [m
+[32m+[m[41m	  [m
+[32m+[m[32m  }else{[m
+[32m+[m	[32m response.writeHead(404,{"Content-Type": "text/plain"});[m
+[32m+[m	[32m response.write('Bad gateway error');[m
+[32m+[m	[32m  response.end();[m
+[32m+[m[32m  }[m
+ [m
+   /*[m
+     Your request handler should send listingData in the JSON format as a response if a GET request [m
+[36m@@ -27,6 +41,15 @@[m [mvar requestHandler = function(request, response) {[m
+ };[m
+ [m
+ fs.readFile('listings.json', 'utf8', function(err, data) {[m
+[32m+[m	[32mif (err) throw err;[m
+[32m+[m	[32mlistingData = data;[m
+[32m+[m
+[32m+[m	[32mserver = http.createServer(requestHandler);[m
+[32m+[m
+[32m+[m	[32mserver.listen(port);[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+[32m+[m[41m	[m
+   /*[m
+     This callback function should save the data in the listingData variable, [m
+     then start the server. [m
