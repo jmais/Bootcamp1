@@ -47,7 +47,7 @@ fs.readFile('listings.json', 'utf8', function(err, data) {
 	server = http.createServer(requestHandler);
 
 	server.listen(port);
-	
+	console.log('server listening on: http://localhost:8080');
 	
 	
   /*
